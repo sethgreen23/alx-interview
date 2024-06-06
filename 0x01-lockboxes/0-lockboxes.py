@@ -11,14 +11,11 @@ def canUnlockAll(boxes):
     while queue:
         value = queue.pop(0)
         tempList = boxes[value]
-        if value not in setElements and 0 <= value < len(boxes):
-            setElements.add(value)
         for temp in tempList:
-            if temp not in setElements:
+            if temp not in setElements and temp < len(boxes):
                 queue.append(temp)
-    if len(setElements) == len(boxes):
-        return True
-    return False
+                setElements.add(temp)
+    return len(setElements) == len(boxes)
 
 # def canUnlockAll(boxes):
 #     """Function that determines if all the boxes can be opened"""
