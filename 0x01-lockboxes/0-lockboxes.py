@@ -4,22 +4,21 @@
 
 def canUnlockAll(boxes):
     """Function that determines if all the boxes can be opened"""
-    if not boxes:
+    if boxes is None:
         return False
-
-    n = len(boxes)
     queue = [0]
-    unlocked = set([0])
-
+    setElements = set([0])
     while queue:
-        box_index = queue.pop(0)
-        for key in boxes[box_index]:
-            if 0 <= key < n and key not in unlocked:
-                unlocked.add(key)
-                queue.append(key)
-
-    return len(unlocked) == n
-
+        value = queue.pop(0)
+        tempList = boxes[value]
+        if value not in setElements and 0 <= value < len(boxes):
+            setElements.add(value)
+        for temp in tempList:
+            if temp not in setElements:
+                queue.append(temp)
+    if len(setElements) == len(boxes):
+        return True
+    return False
 
 # def canUnlockAll(boxes):
 #     """Function that determines if all the boxes can be opened"""
