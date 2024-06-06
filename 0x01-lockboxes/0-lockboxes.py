@@ -13,7 +13,7 @@ def canUnlockAll(boxes):
     while True:
         value = queue.pop(0)
         tempList = boxes[value]
-        if value not in setElements:
+        if value not in setElements and value < len(boxes):
             setElements.add(value)
         for temp in tempList:
             if temp not in setElements:
