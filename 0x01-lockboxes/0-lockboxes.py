@@ -9,7 +9,7 @@ def canUnlockAll(boxes):
     if len(boxes) == 0:
         return False
     queue = [0]
-    setElements = set([0])
+    setElements = set()
     while True:
         value = queue.pop(0)
         tempList = boxes[value]
