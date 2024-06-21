@@ -3,13 +3,13 @@
 import re
 import sys
 
-# Regular expression pattern with capturing groups
+
 pattern = re.compile(
-    r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - '  # IP Address
-    r'\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] '  # Date
-    r'"GET /projects/260 HTTP/1.1" '  # Request
-    r'(\d{3}) '  # Status Code
-    r'(\d+)$'  # File Size
+    r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - '
+    r'\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] '
+    r'"GET /projects/260 HTTP/1.1" '
+    r'(\d{3}) '
+    r'(\d+)$'
 )
 
 
