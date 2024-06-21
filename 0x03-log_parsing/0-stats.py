@@ -48,18 +48,25 @@ def stats() -> None:
     global status_count
     global status_code_list
     global pattern
+
     try:
         for line in sys.stdin:
             line_number += 1
             match = pattern.match(line)
-            if match:
-                status_code = match.group(3)
-                file_size = int(match.group(4))
-                if status_code in status_count:
-                    status_count[status_code] += 1
-                total_size += file_size
-                if line_number % 10 == 0:
-                    print_stats(total_size, status_count, status_code_list)
+            if not match:
+                continue
+
+            status_code = match.group(3)
+            if status_code not in status_count:
+                continue
+
+            file_size = int(match.group(4))
+            status_count[status_code] += 1
+            total_size += file_size
+
+            if line_number % 10 == 0:
+                print_stats(total_size, status_count, status_code_list)
+
     except KeyboardInterrupt:
         pass
     finally:
