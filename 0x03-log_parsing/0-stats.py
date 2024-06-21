@@ -39,19 +39,29 @@ def print_stats():
 
 
 # Check if the line matches the pattern
-try:
-    for line in sys.stdin:
-        match = pattern.match(line)
-        if match:
-            status_code = match.group(3)
-            file_size = int(match.group(4))
-            if status_code in status_count:
-                status_count[status_code] += 1
-            file_size_cumulative += file_size
-            line_number += 1
-            if line_number % 10 == 0:
-                print_stats()
-except KeyboardInterrupt:
-    pass
-finally:
-    print_stats()
+def stats():
+    """Stats function is called every 10 lines"""
+    global file_size_cumulative
+    global line_number
+    global status_count
+    global status_code_list
+    global pattern
+    try:
+        for line in sys.stdin:
+            match = pattern.match(line)
+            if match:
+                status_code = match.group(3)
+                file_size = int(match.group(4))
+                if status_code in status_count:
+                    status_count[status_code] += 1
+                file_size_cumulative += file_size
+                line_number += 1
+                if line_number % 10 == 0:
+                    print_stats()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        print_stats()
+
+
+stats()
