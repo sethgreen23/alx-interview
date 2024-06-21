@@ -12,40 +12,45 @@ pattern = re.compile(
     r'(\d+)$'  # File Size
 )
 
+
 file_size_cumulative = 0
 
 status_count = {
-    200: 0,
-    301: 0,
-    400: 0,
-    401: 0,
-    403: 0,
-    404: 0,
-    405: 0,
-    500: 0
+    '200': 0,
+    '301': 0,
+    '400': 0,
+    '401': 0,
+    '403': 0,
+    '404': 0,
+    '405': 0,
+    '500': 0
 }
 
-status_code_list = [200, 301, 400, 401, 403, 404, 405, 500]
+status_code_list = ['200', '301', '400', '401', '403', '404', '405', '500']
 
 line_number = 0
 # Check if the line matches the pattern
 try:
     for line in sys.stdin:
         match = pattern.match(line)
-        line_number += 1
         if match:
-            status_code = int(match.group(3))
+            status_code = match.group(3)
             file_size = int(match.group(4))
-            if status_code in status_code_list:
+            if status_code in status_count:
                 status_count[status_code] += 1
             file_size_cumulative += file_size
+            line_number += 1
             if line_number % 10 == 0:
                 print("File size: {}".format(file_size_cumulative))
                 for status in status_code_list:
-                    print("{}: {}".format(status, status_count[status]))
+                    value = status_count[status]
+                    if value != 0:
+                        print("{}: {}".format(status, status_count[status]))
         else:
             continue
 except KeyboardInterrupt:
+    pass
+finally:
     print("File size: {}".format(file_size_cumulative))
     for status in status_code_list:
         print("{}: {}".format(status, status_count[status]))
