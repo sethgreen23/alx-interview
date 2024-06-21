@@ -51,6 +51,7 @@ def stats() -> None:
     global pattern
     try:
         for line in sys.stdin:
+            line_number += 1
             match = pattern.match(line)
             if match:
                 status_code = match.group(3)
@@ -58,7 +59,6 @@ def stats() -> None:
                 if status_code in status_count:
                     status_count[status_code] += 1
                 file_size_cumulative += file_size
-                line_number += 1
                 if line_number % 10 == 0:
                     print_stats()
     except KeyboardInterrupt:
