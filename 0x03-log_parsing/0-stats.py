@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""module to read stats"""
 import re
 import sys
 
