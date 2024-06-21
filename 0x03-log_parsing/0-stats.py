@@ -65,6 +65,7 @@ def stats() -> None:
         pass
     finally:
         print_stats()
+        sys.exit()
 
 
 stats()
