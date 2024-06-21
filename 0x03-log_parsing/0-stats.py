@@ -11,7 +11,7 @@ pattern = re.compile(
     r'(\d+)$'
 )
 
-file_size_cumulative = 0
+total_size = 0
 
 status_count = {
     '200': 0,
@@ -31,20 +31,20 @@ line_number = 0
 
 def print_stats() -> None:
     """Print the current statistics."""
-    global file_size_cumulative
+    global total_size
     global status_code_list
     global status_count
-    print("File size: {}".format(file_size_cumulative))
-    for status in status_code_list:
-        value = status_count[status]
+    print("File size: {}".format(total_size))
+    for status_code in status_code_list:
+        value = status_count[status_code]
         if value:
-            print("{}: {}".format(status, value))
+            print("{}: {}".format(status_code, value))
 
 
 # Check if the line matches the pattern
 def stats() -> None:
     """Stats function is called every 10 lines"""
-    global file_size_cumulative
+    global total_size
     global line_number
     global status_count
     global status_code_list
@@ -58,7 +58,7 @@ def stats() -> None:
                 file_size = int(match.group(4))
                 if status_code in status_count:
                     status_count[status_code] += 1
-                file_size_cumulative += file_size
+                total_size += file_size
                 if line_number % 10 == 0:
                     print_stats()
     except KeyboardInterrupt:
