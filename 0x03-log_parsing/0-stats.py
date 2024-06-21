@@ -34,7 +34,7 @@ def print_stats():
     print("File size: {}".format(file_size_cumulative))
     for status in status_code_list:
         value = status_count[status]
-        if value != 0:
+        if value:
             print("{}: {}".format(status, value))
 
 
@@ -58,7 +58,7 @@ def stats():
                 line_number += 1
                 if line_number % 10 == 0:
                     print_stats()
-    except Exception:
+    except KeyboardInterrupt:
         pass
     finally:
         print_stats()
