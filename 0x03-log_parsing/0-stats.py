@@ -29,11 +29,8 @@ status_code_list = ['200', '301', '400', '401', '403', '404', '405', '500']
 line_number = 0
 
 
-def print_stats() -> None:
+def print_stats(total_size: int, status_count: dict, status_code_list: list) -> None:
     """Print the current statistics."""
-    global total_size
-    global status_code_list
-    global status_count
     print("File size: {}".format(total_size))
     for status_code in status_code_list:
         value = status_count[status_code]
@@ -60,11 +57,11 @@ def stats() -> None:
                     status_count[status_code] += 1
                 total_size += file_size
                 if line_number % 10 == 0:
-                    print_stats()
+                    print_stats(total_size, status_count, status_code_list)
     except KeyboardInterrupt:
         pass
     finally:
-        print_stats()
+        print_stats(total_size, status_count, status_code_list)
         sys.exit()
 
 
