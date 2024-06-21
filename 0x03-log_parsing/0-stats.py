@@ -29,7 +29,7 @@ status_code_list = ['200', '301', '400', '401', '403', '404', '405', '500']
 line_number = 0
 
 
-def print_stats():
+def print_stats() -> None:
     """Print the current statistics."""
     global file_size_cumulative
     global status_code_list
@@ -42,7 +42,7 @@ def print_stats():
 
 
 # Check if the line matches the pattern
-def stats():
+def stats() -> None:
     """Stats function is called every 10 lines"""
     global file_size_cumulative
     global line_number
