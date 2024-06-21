@@ -31,6 +31,9 @@ line_number = 0
 
 def print_stats():
     """Print the current statistics."""
+    global file_size_cumulative
+    global status_code_list
+    global status_count
     print("File size: {}".format(file_size_cumulative))
     for status in status_code_list:
         value = status_count[status]
