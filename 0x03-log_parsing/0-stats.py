@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-"""module to read stats"""
+"""Module to read stats"""
 import re
 import sys
-
 
 pattern = re.compile(
     r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - '
@@ -11,7 +10,6 @@ pattern = re.compile(
     r'(\d{3}) '
     r'(\d+)$'
 )
-
 
 file_size_cumulative = 0
 
@@ -29,6 +27,17 @@ status_count = {
 status_code_list = ['200', '301', '400', '401', '403', '404', '405', '500']
 
 line_number = 0
+
+
+def print_stats():
+    """Print the current statistics."""
+    print("File size: {}".format(file_size_cumulative))
+    for status in status_code_list:
+        value = status_count[status]
+        if value != 0:
+            print("{}: {}".format(status, value))
+
+
 # Check if the line matches the pattern
 try:
     for line in sys.stdin:
@@ -41,16 +50,8 @@ try:
             file_size_cumulative += file_size
             line_number += 1
             if line_number % 10 == 0:
-                print("File size: {}".format(file_size_cumulative))
-                for status in status_code_list:
-                    value = status_count[status]
-                    if value != 0:
-                        print("{}: {}".format(status, status_count[status]))
-        else:
-            continue
+                print_stats()
 except KeyboardInterrupt:
     pass
 finally:
-    print("File size: {}".format(file_size_cumulative))
-    for status in status_code_list:
-        print("{}: {}".format(status, status_count[status]))
+    print_stats()
