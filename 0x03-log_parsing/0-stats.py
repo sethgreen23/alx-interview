@@ -71,7 +71,6 @@ def stats() -> None:
         pass
     finally:
         print_stats(total_size, status_count, status_code_list)
-        sys.exit()
 
 
 stats()
