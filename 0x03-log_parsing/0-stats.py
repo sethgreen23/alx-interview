@@ -58,7 +58,7 @@ def stats():
                 line_number += 1
                 if line_number % 10 == 0:
                     print_stats()
-    except KeyboardInterrupt:
+    except Exception:
         pass
     finally:
         print_stats()
