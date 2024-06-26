@@ -40,6 +40,6 @@ def validUTF8(data):
         return False
     for test_num in data[1:count + 1]:
         item = num_bin(test_num)
-        if item[0] != '10' or test_num == 256:
+        if item[:2] != '10' or test_num == 256:
             return False
     return True
