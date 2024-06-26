@@ -18,7 +18,8 @@ def validUTF8(data):
         '0': 0,
         '10': 1,
         '110': 2,
-        '1110': 3
+        '1110': 3,
+		'11110': 4
     }
     if len(data) == 0:
         return False
