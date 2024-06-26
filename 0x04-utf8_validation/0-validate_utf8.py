@@ -38,7 +38,7 @@ def validUTF8(data):
         return False
     if len(data) < least_bit_hash[key]:
         return False
-    for test_num in data[1:count + 1]:
+    for test_num in data[1:]:
         item = num_bin(test_num)
         if item[:2] != '10' or test_num == 256:
             return False
