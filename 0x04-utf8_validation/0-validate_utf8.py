@@ -5,7 +5,8 @@
 def num_bin(number):
     """Return the binary representation of a number"""
     # get the binary representation of the number
-    binary_rep = bin(number)[2:]
+    eight_bit_integer = number & 255
+    binary_rep = bin(eight_bit_integer)[2:]
     return binary_rep.zfill(8)
 
 
