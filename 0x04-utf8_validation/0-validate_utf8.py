@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Validate utf8"""
 
+
 def num_bin(number):
     """Return the binary representation of a number"""
     # get the 8significan numbers
@@ -9,6 +10,7 @@ def num_bin(number):
     binary_repr = bin(eight_least_char)[2:]
     # fill the number with 0 on the left
     return binary_repr.zfill(8)
+
 
 def validUTF8(data):
     """Determine if the given data set represents a valid UTF-8 encoding."""
