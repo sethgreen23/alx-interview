@@ -15,7 +15,7 @@ def makeChange(coins, total):
             result += 1
             total -= coins_arranged[index]
         if (total < 0):
-            return -1
+            return 0
         if total == 0:
             return result
         index += 1
